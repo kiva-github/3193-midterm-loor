@@ -1,0 +1,14 @@
+.hiw-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .button-container {
+        display: flex;
+        flex-direction: column;
+    
+        a {
+            text-decoration: none;
+        }
+    }
+}

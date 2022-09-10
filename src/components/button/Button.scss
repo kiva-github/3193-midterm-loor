@@ -1,0 +1,23 @@
+.button-container {
+    border-radius: 22px;
+    cursor: pointer;
+    height: 44px;
+    line-height: 16px;
+    width: 280px;
+}
+
+.light {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: rgb(52, 52, 52)
+}
+
+.dark {
+    background-color: rgba(52, 52, 52, 0.8);
+    color: white;
+}
+
+.button-container p {
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+}

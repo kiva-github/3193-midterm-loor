@@ -17,7 +17,7 @@ export default function Selections() {
     return (
         <div className='page-container'>
             {sessionCodeArray.map((selection) => (
-                <SelectionCard key={selection.id} title={selection.assignment}/>
+                <SelectionCard key={selection.enteredCode} title={selection.assignment}/>
             ))}
             
             <div className='button-container'>

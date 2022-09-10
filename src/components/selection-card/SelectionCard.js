@@ -1,10 +1,13 @@
+// styles
 import './SelectionCard.scss'
 
-export default function SelectionCard({ title, logo }) {
+// datas
+import { organizationLogos } from '../../datas/organizations'
+
+export default function SelectionCard({ logo }) {
   return (
     <div className='selection-card-container'>
-      <h2>{title}</h2>
-      <img src={logo} alt="logo" />
+      <img src={organizationLogos.logo} alt="logo" />
     </div>
   )
 }

@@ -11,20 +11,26 @@ import { UserContext } from '../../contexts/UserContext'
 import Button from '../../components/button/Button'
 import SelectionCard from '../../components/selection-card/SelectionCard'
 
-
 export default function Confirmation() {
     const { sessionCodeArray } = useContext(UserContext)
+
+    const handleConfirmation = () => {
+        sessionCodeArray.forEach((vote) => {
+            console.log(vote.assignment) // id
+            console.log(vote.enteredCode) // code
+        })
+    }
 
     return (
         <div className='page-container'>
             {sessionCodeArray.map((selection) => (
-                <SelectionCard title={selection.assignment}/>
+                <SelectionCard key={selection.enteredCode} logo={selection.assignment}/>
             ))}
         
             <div className='button-container'>
-                <Link to="/complete">
+                <div onClick={handleConfirmation}>
                     <Button title={'CONFIRM'} btnStyle={'dark'}/>
-                </Link>
+                </div>
                 <Link to="/selections">
                     <Button title={'BACK'} btnStyle={'light'}/>
                 </Link>

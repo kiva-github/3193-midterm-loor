@@ -20,10 +20,31 @@ export default function EnterCode() {
   const navigate = useNavigate()
   const { sessionCodeArray, changeCurrentCode } = useContext(UserContext)
 
-  const handleCodeEntry = async () => {  
+  // check if code has been used this session
+  const codeEnteredInSession = () => {
+    let repeat = false
+    sessionCodeArray.forEach((code) => {
+      console.log('-----')
+      console.log(code.enteredCode === enteredCode)
+      console.log('-----')
+      if (code.enteredCode === enteredCode) {
+        repeat = true
+      }
+    })
+    return repeat
+  }
 
-    if (sessionCodeArray.includes(enteredCode)) {
-      alert('CODE ALREADY ENTERED')
+  const handleCodeEntry = async () => { 
+    if (enteredCode.length === 0) {
+      alert('Invalid code format')
+      return
+    }
+    console.log(sessionCodeArray)
+    const repeatCode = codeEnteredInSession()
+    console.log(`repeat code: ${repeatCode}`)
+
+    if (repeatCode) {
+      alert('You have already entered that code')
     } else {
       const docRef = doc(db, "active-codes", enteredCode);
       const docSnap = await getDoc(docRef);
@@ -31,11 +52,11 @@ export default function EnterCode() {
       if (docSnap.exists()) {
         // if in collection, add code to sessionCodeArray
         changeCurrentCode({ enteredCode: enteredCode, assignment: '' })
+        console.log('Code was accepted, proceed to voting')
         navigate('/vote')
-        
       } else {
         // if not in document, show Invalid Code message
-        alert('INVALID CODE')
+        alert('That code is invalid')
       }
     }
   }

@@ -38,4 +38,13 @@ export const organizations = [
         logo: unicefLogo,
         id: "unicef"
     }
-]  
+] 
+
+export const organizationLogos = {
+    "charity-water": charityWaterLogo,
+    "feeding-america": feedingAmericaLogo,
+    "st-jude": stJudeLogo,
+    "doctors-without-borders": doctorsWithoutBordersLogo,
+    "american-red-cross": americanRedCrossLogo,
+    "unicef": unicefLogo,
+}

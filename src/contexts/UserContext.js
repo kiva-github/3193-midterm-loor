@@ -5,7 +5,6 @@ export const UserContext = createContext()
 const userReducer = (state, action) => {
     switch (action.type) {
         case 'CHANGE_CODE':
-            console.log('updating state')
             return { ...state, currentCode: action.payload }
         default:
             return state

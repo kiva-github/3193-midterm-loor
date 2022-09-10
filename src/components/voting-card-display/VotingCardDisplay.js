@@ -24,7 +24,6 @@ export default function VotingCardDisplay() {
     }
     return (
         <div className='voting-card-display-container'>
-            
             {organizations.map((organization) => (
                 <div key={organization.id} id={organization.id} onClick={() => handleVote(organization.id)}>
                     <VotingCard organization={organization} />

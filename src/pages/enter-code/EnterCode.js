@@ -6,6 +6,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from '../../utils/firebase/config';
 
 // styles
+import '../pages.scss'
 import './EnterCode.scss'
 
 // components
@@ -40,22 +41,23 @@ export default function EnterCode() {
   }
 
   return (
-    <div className='enter-code-container'>
-      <h3>Enter code in the field below</h3>
-      <div className='input-container'>
-        <input
-          className='code-input'
-          type="text"
-          onChange={(e) => setEnteredCode(e.target.value.toUpperCase())}
-          value={enteredCode}
-        />
-      </div>
-      <div className='button-container'>
+    <div className='page-container'>
+      <>
+        <h1>Enter code in the field below</h1>
+        <div className='input-container'>
+          <input
+            className='code-input'
+            type="text"
+            onChange={(e) => setEnteredCode(e.target.value.toUpperCase())}
+            value={enteredCode}
+          />
+        </div>
+      </>
 
+      <div className='button-container'>
         <div onClick={handleCodeEntry}>
           <Button title={'ENTER'} btnSyle={'light'} />
         </div>
-
         <Link to="/">
             <Button title={'BACK'} btnStyle={'light'}/>
         </Link>

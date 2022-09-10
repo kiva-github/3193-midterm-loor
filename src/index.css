@@ -14,21 +14,12 @@ header {
   display: flex;
   justify-content: center;
   padding-top: 50px;
+  padding-bottom: 100px;
 }
 
 header .placeholder-logo {
   border: 10px solid white;
   height: 100px;
   width: 100px;
-}
-
-h1 {
-  background-color: brown;
-  color: purple;
-  max-width: 600px;
-  padding: 20px;
-  text-align: center;
-  width: 50%;
-
 }
 

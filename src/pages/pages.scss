@@ -1,0 +1,24 @@
+.page-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+
+    .button-container {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    h1 {
+        font-style: oblique;
+        color: white;
+        font-size: 24px;
+        font-weight: 600;
+        margin: 0;
+        max-width: 600px;
+        padding: 20px;
+        text-align: center;
+        width: 50%;
+      }
+}

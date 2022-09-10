@@ -8,25 +8,25 @@ import '../pages.scss'
 import { UserContext } from '../../contexts/UserContext'
 
 // components
+import Button from '../../components/button/Button'
 import SelectionCard from '../../components/selection-card/SelectionCard'
-import Button from "../../components/button/Button"
 
-export default function Selections() {
+
+export default function Confirmation() {
     const { sessionCodeArray } = useContext(UserContext)
 
     return (
         <div className='page-container'>
             {sessionCodeArray.map((selection) => (
-                <SelectionCard key={selection.id} title={selection.assignment}/>
+                <SelectionCard title={selection.assignment}/>
             ))}
-            
+        
             <div className='button-container'>
-                <Link to="/enter-code">
-                    <Button title={'ENTER ANOTHER CODE '} btnSyle={'light'} />
+                <Link to="/complete">
+                    <Button title={'CONFIRM'} btnStyle={'dark'}/>
                 </Link>
-
-                <Link to="/confirmation">
-                    <Button title={'NEXT'} btnStyle={'light'}/>
+                <Link to="/selections">
+                    <Button title={'BACK'} btnStyle={'light'}/>
                 </Link>
             </div>
         </div> 

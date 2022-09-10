@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 
 // styles
-import './Vote.scss'
+import '../pages.scss'
 
 // contexts
 import { UserContext } from '../../contexts/UserContext'
@@ -14,7 +14,7 @@ export default function Vote() {
   const { currentCode } = useContext(UserContext)
 
   return (
-    <div className='vote-container'>
+    <div className='page-container'>
         <h1>Swipe to view and select an organization to vote {currentCode ? '1' : '0'} time{currentCode ? '' : 's'} for</h1>
         <VotingCardDisplay />
     </div>

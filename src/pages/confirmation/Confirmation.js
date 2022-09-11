@@ -1,5 +1,10 @@
 import { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { setCodes } from '../../utils/firebase/config'
+
+// firebase imports
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { db } from '../../utils/firebase/config';
 
 // styles
 import '../pages.scss'
@@ -11,14 +16,27 @@ import { UserContext } from '../../contexts/UserContext'
 import Button from '../../components/button/Button'
 import SelectionCard from '../../components/selection-card/SelectionCard'
 
+// set rankings
+const setRankings = async (assignee) => {
+    const docRef = doc(db, "rankings", assignee);
+    const docSnap = await getDoc(docRef);
+    let currentCount = docSnap.data().count
+    currentCount = currentCount + 1
+    await setDoc(docRef, { count: currentCount })
+    console.log(`current count: ${currentCount}`)
+}
+
 export default function Confirmation() {
-    const { sessionCodeArray } = useContext(UserContext)
+    const { sessionCodeArray, clearSessionCodeArray } = useContext(UserContext)
+    const navigate = useNavigate()
 
     const handleConfirmation = () => {
         sessionCodeArray.forEach((vote) => {
-            console.log(vote.assignment) // id
-            console.log(vote.enteredCode) // code
+            setCodes(vote.enteredCode, vote.assignment)
+            setRankings(vote.assignment) // fix
         })
+        clearSessionCodeArray()
+        navigate('/complete')
     }
 
     return (

@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, doc, setDoc } from "firebase/firestore";
 import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -23,6 +23,9 @@ export const db = getFirestore(app)
 export const analytics = getAnalytics(app);
 
 
-export const setDocument = (path) => {
-  return
+// set codes
+export const setCodes = (code, assignedTo) => {
+  const assignedRef = doc(db, 'active-codes', code)
+  setDoc(assignedRef, { assignedTo: assignedTo, used: true}, {merge: true })
+  console.log('done')
 }

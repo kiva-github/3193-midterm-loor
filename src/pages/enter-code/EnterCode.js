@@ -15,6 +15,7 @@ import Button from "../../components/button/Button"
 // contexts
 import { UserContext } from '../../contexts/UserContext';
 
+
 export default function EnterCode() {
   const [enteredCode, setEnteredCode] = useState('')
   const navigate = useNavigate()
@@ -24,9 +25,6 @@ export default function EnterCode() {
   const codeEnteredInSession = () => {
     let repeat = false
     sessionCodeArray.forEach((code) => {
-      console.log('-----')
-      console.log(code.enteredCode === enteredCode)
-      console.log('-----')
       if (code.enteredCode === enteredCode) {
         repeat = true
       }
@@ -35,25 +33,28 @@ export default function EnterCode() {
   }
 
   const handleCodeEntry = async () => { 
+
     if (enteredCode.length === 0) {
       alert('Invalid code format')
       return
     }
-    console.log(sessionCodeArray)
     const repeatCode = codeEnteredInSession()
-    console.log(`repeat code: ${repeatCode}`)
 
     if (repeatCode) {
       alert('You have already entered that code')
     } else {
       const docRef = doc(db, "active-codes", enteredCode);
       const docSnap = await getDoc(docRef);
-      // check if code is a doc in active-codes collection
+
       if (docSnap.exists()) {
-        // if in collection, add code to sessionCodeArray
-        changeCurrentCode({ enteredCode: enteredCode, assignment: '' })
-        console.log('Code was accepted, proceed to voting')
-        navigate('/vote')
+        if (docSnap.data().used) {
+          alert('That code has been used already')
+        } else {
+          // if in collection, add code to sessionCodeArray
+          changeCurrentCode({ enteredCode: enteredCode, assignment: '' })
+          console.log('Code was accepted, proceed to voting')
+          navigate('/vote')
+        }
       } else {
         // if not in document, show Invalid Code message
         alert('That code is invalid')
@@ -79,7 +80,7 @@ export default function EnterCode() {
         <div onClick={handleCodeEntry}>
           <Button title={'ENTER'} btnSyle={'light'} />
         </div>
-        <Link to="/">
+        <Link to={sessionCodeArray.length === 0 ? '/' : '/selections'}>
             <Button title={'BACK'} btnStyle={'light'}/>
         </Link>
       </div>

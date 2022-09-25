@@ -1,0 +1,17 @@
+.model-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding-top: 40px;
+
+    .model-placeholder {
+        height: fit-content;
+        text-align: center;
+        width: 150px;
+
+        img {
+            width: 100px;
+        }
+    }
+}

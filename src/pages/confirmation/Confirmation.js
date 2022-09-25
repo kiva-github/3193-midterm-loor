@@ -1,9 +1,9 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { setCodes } from '../../utils/firebase/config'
 
 // firebase imports
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { db } from '../../utils/firebase/config';
 
 // styles
@@ -17,13 +17,15 @@ import Button from '../../components/button/Button'
 import SelectionCard from '../../components/selection-card/SelectionCard'
 
 // set rankings
-const setRankings = async (assignee) => {
-    const docRef = doc(db, "rankings", assignee);
-    const docSnap = await getDoc(docRef);
-    let currentCount = docSnap.data().count
-    currentCount = currentCount + 1
-    await setDoc(docRef, { count: currentCount })
-    console.log(`current count: ${currentCount}`)
+const setRankings = async () => {
+    const querySnapshot = await getDocs(collection(db, "rankings"));
+    let dict = {}
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      dict[doc.id] = doc.data().count
+    //   console.log(doc.id, " => ", doc.data().count);
+    })
+    return dict
 }
 
 export default function Confirmation() {
@@ -31,9 +33,17 @@ export default function Confirmation() {
     const navigate = useNavigate()
 
     const handleConfirmation = () => {
+        let dict = {}
         sessionCodeArray.forEach((vote) => {
             setCodes(vote.enteredCode, vote.assignment)
-            setRankings(vote.assignment) // fix
+            
+            if (dict[vote.assignment] != null) {
+                let currCount = dict[vote.assignment]
+                let newCount = currCount +  1
+                dict[vote.assignment] = newCount
+            } else {
+                dict[vote.assignment] = 1
+            }
         })
         clearSessionCodeArray()
         navigate('/complete')

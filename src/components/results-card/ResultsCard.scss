@@ -1,12 +1,36 @@
 .results-card-container {
-    background-color: green;
+    align-items: center;
+    background-color: white;
     border-radius: 12px;
-    height: 60px;
-    width: 280px;
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    position: relative;
+    width: 420px;
+
+    .card-vote-count {
+        border: 2px solid #363636;
+        border-radius: 20px;
+        height: 30px;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translate(0%, -50%);
+        width: 40px;
+
+        p {
+            font-size: 14px;
+            left: 50%;
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
 
     p {
-        color: white;
+        color: #363636;
         cursor: pointer;
+        font-weight: 700;
         margin: 0;
         text-align: center;
     }

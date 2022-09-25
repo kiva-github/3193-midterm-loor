@@ -1,10 +1,13 @@
 // styles
 import './ResultsCard.scss'
 
-export default function ResultsCard({title}) {
+export default function ResultsCard({ organization }) {
   return (
     <div className='results-card-container'>
-        <p>{title}</p>
+        <p>{organization.title}</p>
+        <div className='card-vote-count'>
+          <p>{organization.count}</p>
+        </div>
     </div>
   )
 }

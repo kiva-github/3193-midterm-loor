@@ -1,17 +1,19 @@
-.btn-container {
+.btn-s-container {
     background: none;
     border: none; 
     display: flex;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 700;
 
     .btn {
+        align-items: center;
         border: none;
         border-radius: 22px;
         cursor: pointer;
-        height: 44px;
-        line-height: 16px;
-        width: 280px;
+        display: flex;
+        justify-content: center;
+        height: 30px;
+        width: 180px;
     }
     
     .light {
@@ -24,12 +26,7 @@
         background-color: rgb(52, 52, 52);
         color: white;
     }
-    
-    .button-container p {
-        font-size: 16px;
-        font-weight: 700;
-        text-align: center;
-    }
+
 
 }
 

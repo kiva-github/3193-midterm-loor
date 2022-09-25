@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion'
 
 // styles
-import './Button.scss'
+import './ButtonSmall.scss'
 
-export default function Button({ title, btnStyle }) {
+export default function ButtonSmall({ title, btnStyle='light' }) {
   return (
     <motion.button
-      className='btn-container'
+      className='btn-s-container'
       whileHover={{
         scale: 1.05,
         transition: { duration: 0.2 },
@@ -17,6 +17,5 @@ export default function Button({ title, btnStyle }) {
         <p>{title}</p>
       </div>  
     </motion.button>
-
   )
 }

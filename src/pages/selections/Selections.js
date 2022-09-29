@@ -1,8 +1,9 @@
 import { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 // styles
 import '../pages.scss'
+import './Selections.scss'
 
 // contexts
 import { UserContext } from '../../contexts/UserContext'
@@ -12,14 +13,28 @@ import SelectionCard from '../../components/selection-card/SelectionCard'
 import Button from "../../components/button/Button"
 
 export default function Selections() {
-    const { sessionCodeArray } = useContext(UserContext)
+    const { enteredCodes, updateCurrentCode, removeFromEnteredCodes } = useContext(UserContext)
+    const navigate = useNavigate()
+
+    const handleClick = (e) => {
+        const clickedSelectionCode = e.currentTarget.id
+        const clickedVote = enteredCodes.find((codeData) => codeData.code === clickedSelectionCode)
+        updateCurrentCode(clickedVote)
+        removeFromEnteredCodes(clickedVote.code)
+        navigate('/vote')
+    }
 
     return (
         <div className='page-container'>
-            {sessionCodeArray.map((selection) => (
-                <SelectionCard key={selection.enteredCode} title={selection.assignment}/>
-            ))}
-            
+
+            <div className='selections-container'>
+                {enteredCodes.map((enteredCode) => (
+                    <div id={enteredCode.code} className='selection-card-container' key={enteredCode.code} onClick={handleClick}>
+                        <SelectionCard selection={enteredCode}/>
+                    </div>
+                ))}
+            </div>
+
             <div className='button-container'>
                 <Link to="/enter-code">
                     <Button title={'ENTER ANOTHER CODE '} btnSyle={'light'} />

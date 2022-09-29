@@ -10,41 +10,50 @@ import unicefLogo from '../assets/unicef-logo.png'
 export const organizations = [
     {
         title: "Charity: Water",
-        logo: charityWaterLogo,
-        id: "charity-water"
+        id: "charity-water",
+        image: {
+            src: charityWaterLogo,
+            alt: 'charity water logo'
+        }
     },
     {
         title: "Feeding America",
-        logo: feedingAmericaLogo,
-        id: "feeding-america"
+        id: "feeding-america",
+        image: {
+            src: feedingAmericaLogo,
+            alt: 'feeding america logo'
+        }
     },
     {
         title: "St. Jude's Children's Research Hospital",
-        logo: stJudeLogo,
-        id: "st-jude"
+        id: "st-jude",
+        image: {
+            src: stJudeLogo,
+            alt: 'st jude hospital logo'
+        }
     },
     {
         title: "Doctors Without Borders",
-        logo: doctorsWithoutBordersLogo,
-        id: "doctors-without-borders"
+        id: "doctors-without-borders",
+        image: {
+            src: doctorsWithoutBordersLogo,
+            alt: 'doctors without borders logo'
+        }
     },
     {
         title: "American Red Cross",
-        logo: americanRedCrossLogo,
-        id: "american-red-cross"
+        id: "american-red-cross",
+        image: {
+            src: americanRedCrossLogo,
+            alt: 'american red cross logo'
+        }
     },
     {
         title: "UNICEF",
-        logo: unicefLogo,
-        id: "unicef"
+        id: "unicef",
+        image: {
+            src: unicefLogo,
+            alt: 'UNICEF'
+        }
     }
-] 
-
-export const organizationLogos = {
-    "charity-water": charityWaterLogo,
-    "feeding-america": feedingAmericaLogo,
-    "st-jude": stJudeLogo,
-    "doctors-without-borders": doctorsWithoutBordersLogo,
-    "american-red-cross": americanRedCrossLogo,
-    "unicef": unicefLogo,
-}
+]

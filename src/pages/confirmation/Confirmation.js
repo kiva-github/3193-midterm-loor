@@ -1,10 +1,9 @@
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { setCodes } from '../../utils/firebase/config'
+import { db, addToOrganizationCollection, updateCodes } from '../../utils/firebase/config'
 
-// firebase imports
-import { collection, getDocs } from "firebase/firestore";
-import { db } from '../../utils/firebase/config';
+import { collection, getDocs, updateDoc, doc } from 'firebase/firestore'
+
 
 // styles
 import '../pages.scss'
@@ -16,43 +15,40 @@ import { UserContext } from '../../contexts/UserContext'
 import Button from '../../components/button/Button'
 import SelectionCard from '../../components/selection-card/SelectionCard'
 
-// set rankings
-const setRankings = async () => {
-    const querySnapshot = await getDocs(collection(db, "rankings"));
-    let dict = {}
-    querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      dict[doc.id] = doc.data().count
-    //   console.log(doc.id, " => ", doc.data().count);
-    })
-    return dict
-}
+// datas
+import { organizations } from '../../datas/organizations'
 
 export default function Confirmation() {
-    const { sessionCodeArray, clearSessionCodeArray } = useContext(UserContext)
+    const { enteredCodes, clearEnteredCodes } = useContext(UserContext)
     const navigate = useNavigate()
 
+    // update rankings
+    const updateRankings = async (organization) => {
+        const querySnapshot = await getDocs(collection(db, "rankings", organization, 'voted-codes'));
+        let count = 0;
+        querySnapshot.forEach((doc) => {
+            count += 1
+        });
+        const docRef = doc(db, 'rankings', organization)
+        await updateDoc(docRef, { count })
+    }
+
     const handleConfirmation = () => {
-        let dict = {}
-        sessionCodeArray.forEach((vote) => {
-            setCodes(vote.enteredCode, vote.assignment)
-            
-            if (dict[vote.assignment] != null) {
-                let currCount = dict[vote.assignment]
-                let newCount = currCount +  1
-                dict[vote.assignment] = newCount
-            } else {
-                dict[vote.assignment] = 1
-            }
+        enteredCodes.forEach((enteredCode) => {
+            updateCodes(enteredCode.code, enteredCode.assignment)
         })
-        clearSessionCodeArray()
+        addToOrganizationCollection(enteredCodes)
+        organizations.map((org) => {
+            updateRankings(org.id)
+        })
+        clearEnteredCodes()
         navigate('/complete')
     }
 
     return (
         <div className='page-container'>
-            {sessionCodeArray.map((selection) => (
-                <SelectionCard key={selection.enteredCode} logo={selection.assignment}/>
+            {enteredCodes.map((enteredCode) => (
+                <SelectionCard key={enteredCode.code} selection={enteredCode}/>
             ))}
         
             <div className='button-container'>

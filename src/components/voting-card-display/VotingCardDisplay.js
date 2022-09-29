@@ -12,14 +12,14 @@ import { UserContext } from '../../contexts/UserContext'
 import VotingCard from '../voting-card/VotingCard'
 import { organizations } from '../../datas/organizations'
 
-export default function VotingCardDisplay() {  
-    const { sessionCodeArray, currentCode, changeCurrentCode } = useContext(UserContext)
+export default function VotingCardDisplay() {
+    const { enteredCodes, currentCode, updateCurrentCode } = useContext(UserContext)
     const navigate = useNavigate()
 
     const handleVote = (id) => {
         currentCode.assignment = id
-        sessionCodeArray.push(currentCode)
-        changeCurrentCode(null)
+        enteredCodes.push(currentCode)
+        updateCurrentCode(null)
         navigate('/selections')
     }
     return (

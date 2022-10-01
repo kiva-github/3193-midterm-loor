@@ -9,7 +9,7 @@ import '../pages.scss'
 import './EnterCode.scss'
 
 // components
-import Button from "../../components/button/Button"
+import PrimaryButton from '../../components/primary-button/PrimaryButton'
 
 // contexts
 import { UserContext } from '../../contexts/UserContext';
@@ -90,10 +90,10 @@ export default function EnterCode() {
 
       <div className='button-container'>
         <div onClick={handleCodeEntry}>
-          <Button title={'ENTER'} btnSyle={'light'} />
+          <PrimaryButton title={'ENTER'} btnSyle={'light'} />
         </div>
         <Link to={enteredCodes.length === 0 ? '/' : '/selections'}>
-            <Button title={'BACK'} btnStyle={'light'}/>
+            <PrimaryButton title={'BACK'} btnStyle={'light'}/>
         </Link>
       </div>
     </div>

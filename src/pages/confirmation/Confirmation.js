@@ -12,7 +12,7 @@ import '../pages.scss'
 import { UserContext } from '../../contexts/UserContext'
 
 // components
-import Button from '../../components/button/Button'
+import PrimaryButton from '../../components/primary-button/PrimaryButton'
 import SelectionCard from '../../components/selection-card/SelectionCard'
 
 // datas
@@ -22,14 +22,14 @@ export default function Confirmation() {
     const { enteredCodes, clearEnteredCodes } = useContext(UserContext)
     const navigate = useNavigate()
 
-    // update rankings
-    const updateRankings = async (organization) => {
-        const querySnapshot = await getDocs(collection(db, "rankings", organization, 'voted-codes'));
+    // update results
+    const updateResults = async (organization) => {
+        const querySnapshot = await getDocs(collection(db, "results", organization, 'voted-codes'));
         let count = 0;
         querySnapshot.forEach((doc) => {
             count += 1
         });
-        const docRef = doc(db, 'rankings', organization)
+        const docRef = doc(db, 'results', organization)
         await updateDoc(docRef, { count })
     }
 
@@ -39,7 +39,7 @@ export default function Confirmation() {
         })
         addToOrganizationCollection(enteredCodes)
         organizations.map((org) => {
-            updateRankings(org.id)
+            updateResults(org.id)
         })
         clearEnteredCodes()
         navigate('/complete')
@@ -53,10 +53,10 @@ export default function Confirmation() {
         
             <div className='button-container'>
                 <div onClick={handleConfirmation}>
-                    <Button title={'CONFIRM'} btnStyle={'dark'}/>
+                    <PrimaryButton title={'CONFIRM'} btnStyle={'dark'}/>
                 </div>
                 <Link to="/selections">
-                    <Button title={'BACK'} btnStyle={'light'}/>
+                    <PrimaryButton title={'BACK'} btnStyle={'light'}/>
                 </Link>
             </div>
         </div> 

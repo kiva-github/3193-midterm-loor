@@ -10,7 +10,7 @@ import { UserContext } from '../../contexts/UserContext'
 
 // components
 import SelectionCard from '../../components/selection-card/SelectionCard'
-import Button from "../../components/button/Button"
+import PrimaryButton from "../../components/primary-button/PrimaryButton"
 
 export default function Selections() {
     const { enteredCodes, updateCurrentCode, removeFromEnteredCodes } = useContext(UserContext)
@@ -37,11 +37,11 @@ export default function Selections() {
 
             <div className='button-container'>
                 <Link to="/enter-code">
-                    <Button title={'ENTER ANOTHER CODE '} btnSyle={'light'} />
+                    <PrimaryButton title={'ENTER ANOTHER CODE '} btnSyle={'light'} />
                 </Link>
 
                 <Link to="/confirmation">
-                    <Button title={'NEXT'} btnStyle={'light'}/>
+                    <PrimaryButton title={'NEXT'} btnStyle={'light'}/>
                 </Link>
             </div>
         </div> 

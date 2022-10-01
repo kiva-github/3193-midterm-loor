@@ -1,11 +1,13 @@
+// X
+
 // styles
 import './ModelContainer.scss'
 
-// components
-import HomeButtons from '../home-buttons/HomeButtons'
-
 // assets
 import machine from '../../assets/vending_machine.png'
+
+// components
+import HomeButtons from '../home-buttons/HomeButtons'
 
 export default function ModelContainer() {
   return (
@@ -15,6 +17,5 @@ export default function ModelContainer() {
       </div>
       <HomeButtons />
     </div>
-    
   )
 }

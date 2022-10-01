@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import '../pages.scss'
 
 // components
-import Button from '../../components/button/Button'
+import PrimaryButton from '../../components/primary-button/PrimaryButton'
 
 export default function HowItWorks() {
   return (
@@ -12,7 +12,7 @@ export default function HowItWorks() {
         <h1>[HOW IT WORKS]</h1>
         <div className='button-container'>
             <Link to="/">
-                <Button title={'BACK'} btnStyle={'light'}/>
+                <PrimaryButton title={'BACK'} btnStyle={'light'}/>
             </Link>
         </div>
     </div>

@@ -50,7 +50,7 @@ export const updateCodes = (code, assignedTo) => {
 // add code to organization's voted for codes
 export const addToOrganizationCollection = async (enteredCodes) => {
   enteredCodes.forEach((c) => {
-    const colRef = collection(db, 'rankings', c.assignment, 'voted-codes')
+    const colRef = collection(db, 'results', c.assignment, 'voted-codes')
     setDoc(doc(colRef, c.code), c)
   })
   

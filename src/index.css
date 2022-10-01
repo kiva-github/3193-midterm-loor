@@ -10,15 +10,3 @@ a {
   text-decoration: none;
 }
 
-header {
-  display: flex;
-  justify-content: center;
-  padding: 50px 0px;
-}
-
-header .placeholder-logo {
-  border: 10px solid white;
-  height: 100px;
-  width: 100px;
-}
-

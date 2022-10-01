@@ -1,15 +1,19 @@
 .results-card-container {
     align-items: center;
-    background-color: white;
-    border-radius: 12px;
+    -webkit-backdrop-filter: blur( 7.5px );
+    background: rgba( 255, 255, 255, 0.25 );
+    backdrop-filter: blur( 7.5px );
+    border: 1px solid rgba( 255, 255, 255, 0.2 );
+    border-radius: 8px;
+    cursor: pointer;
     display: flex;
     height: 100px;
     justify-content: center;
     position: relative;
-    width: 420px;
+    width: 420px; 
 
     .card-vote-count {
-        border: 2px solid #363636;
+        border: 2px solid #FFFFFF;
         border-radius: 20px;
         height: 30px;
         position: absolute;
@@ -27,8 +31,12 @@
         }
     }
 
+    img {
+        width: 110px;
+    }
+
     p {
-        color: #363636;
+        color: #FFFFFF;
         cursor: pointer;
         font-weight: 700;
         margin: 0;

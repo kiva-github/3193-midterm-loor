@@ -1,13 +1,14 @@
+// X
+
 import { useState } from 'react'
 
 // styles
 import '../pages.scss'
-import './Home.scss'
 
 // components
 import ModelContainer from '../../components/model-container/ModelContainer'
 import VotingResults from '../../components/voting-results/VotingResults'
-import ButtonSmall from '../../components/button-small/ButtonSmall'
+import TertiaryButton from '../../components/tertiary-button/TertiaryButton'
 
 export default function Home() {
   const [homeView, setHomeView] = useState(true)
@@ -16,21 +17,18 @@ export default function Home() {
   const handleClick = () => {
     if (homeView) {
       setHomeView(false)
-      setBtnTitle('BACK')
-      
+      setBtnTitle('BACK')   
     } else {
       setHomeView(true)
       setBtnTitle('VIEW VOTING')
-      
     }
   }
 
   return (
-    <div className='page-container home-container'>
+    <div className='page-container'>
       <div onClick={handleClick}>
-        <ButtonSmall title={btnTitle} btnStyle='light'/>
+        <TertiaryButton title={btnTitle} btnStyle='light'/>
       </div>  
-
       {homeView ? <ModelContainer /> : <VotingResults />}
     </div>
   )

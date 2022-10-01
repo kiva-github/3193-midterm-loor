@@ -1,3 +1,5 @@
+// X
+
 // styles
 import './VotingResults.scss'
 
@@ -8,16 +10,15 @@ import ResultsCard from "../results-card/ResultsCard"
 import { useCollection } from '../../hooks/useCollection'
 
 export default function VotingResults() {
-
-    // fetch standings from server
-    const { documents } = useCollection('rankings')
-    const data = ['Water Project', 'UNICEF', 'Red Cross']
+    const { documents, error } = useCollection('results')
+    const sortedDocs = [].concat(documents).sort((a, b) => a.count < b.count ? 1 : -1)
 
     return (
-      <div className='results-container'>
-          {documents && documents.map((organization) => (
+      <div className='voting-results-container'>
+        {sortedDocs[0] && sortedDocs.map((organization) => (
               <ResultsCard key={organization.id} organization={organization} />
           ))}
+          {error && <p>{error.message}</p>}
       </div>
     )
 }

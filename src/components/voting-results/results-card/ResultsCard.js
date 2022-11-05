@@ -4,7 +4,7 @@
 import './ResultsCard.scss'
 
 //data
-import { organizations } from '../../datas/organizations'
+import { organizations } from '../../../datas/organizations'
 
 export default function ResultsCard({ organization }) {
   const organizationInfo = organizations.find((currOrg) => currOrg.id === organization.id)

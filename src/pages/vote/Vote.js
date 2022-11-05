@@ -1,14 +1,17 @@
 // styles
 import '../pages.scss'
+import './Vote.scss'
 
 // components
-import VotingCardDisplay from "../../components/voting-card-display/VotingCardDisplay"
+import VotingCard from '../../components/voting-card/VotingCard'
 
 export default function Vote() {
   return (
     <div className='page-container'>
+      <div className='vote-container'>
         <h1>Swipe to view and select an organization to vote for</h1>
-        <VotingCardDisplay />
+        <VotingCard />
+      </div> 
     </div>
   )
 }

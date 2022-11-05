@@ -1,0 +1,35 @@
+.how-it-works-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    
+    .text-container {
+        align-items: center;
+        color: #FFFFFF;
+        display: flex;
+        height: 332px;
+        justify-content: center;
+        width: 280px;
+
+        p {
+            text-align: center;
+        }
+    }
+
+    .pagination-container{
+        display: flex;
+        gap: 10px;
+        padding-bottom: 40px;
+        
+        .dot {
+            background-color: #FFFFFF;
+            border-radius: 50%;
+            height: 10px;
+            width: 10px;
+        }
+
+        .active {
+            background-color: #000000;
+        }
+    }
+}

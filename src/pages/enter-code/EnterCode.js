@@ -1,6 +1,7 @@
-import { useState, useContext } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+// X
 
+import { useContext, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { doc, getDoc } from 'firebase/firestore'
 import { db } from '../../utils/firebase/config'
 
@@ -21,17 +22,14 @@ export default function EnterCode() {
   const navigate = useNavigate()
   const { enteredCodes, updateCurrentCode } = useContext(UserContext)
 
-  // check if code exists
   const codeInDatabase = async (enteredCode) => {
     const docRef = doc(db, "active-codes", enteredCode);
     const docSnap = await getDoc(docRef);
-
     if (docSnap.exists()) {
       if (docSnap.data().used) {
         setCodeError('Code has already been used')
         setUnchanged(enteredCode)
       } else {
-        // if code exists, set currentCode to entered code
         updateCurrentCode({ code: enteredCode, assignment: '' })
         navigate('/vote')
       }
@@ -41,7 +39,6 @@ export default function EnterCode() {
     }
   }
 
-  // check if code has been used this session
   const codeAlreadyEnteredInSession = () => {
     let repeat = false
     enteredCodes.forEach((c) => {
@@ -56,14 +53,11 @@ export default function EnterCode() {
   const handleCodeEntry = async () => {
     setUnchanged(null)
     setCodeError(null)
-
-    // if no code entered, display error message
     if (enteredCode.length === 0) {
       setCodeError('Invalid code (nothing entered)')
       setUnchanged(enteredCode)
       return
     }
-
     if (codeAlreadyEnteredInSession()) {
       setCodeError('You have already entered that code')
       setUnchanged(enteredCode)
@@ -74,7 +68,7 @@ export default function EnterCode() {
 
   return (
     <div className='page-container'>
-      <>
+      <div className='enter-code-container'>
         <h1>Enter code in the field below</h1>
         <div className='input-container'>
           <input
@@ -84,18 +78,15 @@ export default function EnterCode() {
             value={enteredCode}
             placeholder='CODE'
           />
+          <div onClick={handleCodeEntry}>
+            <PrimaryButton title={'ENTER'} btnStyle={'light'} />
+          </div>
           {codeError && ( unchanged === enteredCode ) && <h4>{codeError}</h4>}
         </div>
-      </>
-
-      <div className='button-container'>
-        <div onClick={handleCodeEntry}>
-          <PrimaryButton title={'ENTER'} btnSyle={'light'} />
-        </div>
-        <Link to={enteredCodes.length === 0 ? '/' : '/selections'}>
-            <PrimaryButton title={'BACK'} btnStyle={'light'}/>
-        </Link>
       </div>
+      <Link to={enteredCodes.length === 0 ? '/' : '/selections'}>
+          <PrimaryButton title={'BACK'} btnStyle={'light'}/>
+      </Link>
     </div>
   )
 }

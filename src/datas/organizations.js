@@ -14,6 +14,11 @@ export const organizations = [
         image: {
             src: charityWaterLogo,
             alt: 'charity water logo'
+        },
+        founded: '2006',
+        headquarters: 'New York, NY',
+        description: {
+            "p": "description about Charity: Water"
         }
     },
     {
@@ -22,6 +27,11 @@ export const organizations = [
         image: {
             src: feedingAmericaLogo,
             alt: 'feeding america logo'
+        },
+        founded: '1979',
+        headquarters: 'Chicago, IL',
+        description: {
+            "p": "description about Feeding America"
         }
     },
     {
@@ -30,6 +40,11 @@ export const organizations = [
         image: {
             src: stJudeLogo,
             alt: 'st jude hospital logo'
+        },
+        founded: '1960',
+        headquarters: 'Memphis, TN',
+        description: {
+            "p": "description about St. Jude Children's Hospital Research"
         }
     },
     {
@@ -38,6 +53,11 @@ export const organizations = [
         image: {
             src: doctorsWithoutBordersLogo,
             alt: 'doctors without borders logo'
+        },
+        founded: '1971',
+        headquarters: 'Geneva, Switzerland',
+        description: {
+            "p": "description about Doctors Without Borders"
         }
     },
     {
@@ -46,6 +66,11 @@ export const organizations = [
         image: {
             src: americanRedCrossLogo,
             alt: 'american red cross logo'
+        },
+        founded: '1881',
+        headquarters: 'Washington, D.C.',
+        description: {
+            "p": "description about American Red Cross"
         }
     },
     {
@@ -54,6 +79,11 @@ export const organizations = [
         image: {
             src: unicefLogo,
             alt: 'UNICEF'
+        },
+        founded: '1946',
+        headquarters: 'New York, NY',
+        description: {
+            "p": "description about UNICEF"
         }
     }
 ]

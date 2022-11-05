@@ -5,10 +5,10 @@ import { motion } from 'framer-motion'
 // styles
 import './TertiaryButton.scss'
 
-export default function SecondaryButton({ title, btnStyle='light' }) {
+export default function TertiaryButton({ title, btnStyle='light' }) {
   return (
     <motion.button
-      className='secondary-btn-container'
+      className='tertiary-btn-container'
       whileHover={{
         scale: 1.05,
         transition: { duration: 0.2 },

@@ -1,19 +1,17 @@
-.tertiary-btn-container {
+.secondary-btn-container {
     background: none;
     border: none; 
     display: flex;
-    font-size: 10px;
+    font-size: 16px;
     font-weight: 700;
 
     .btn {
-        align-items: center;
         border: none;
-        border-radius: 22px;
+        border-radius: 50px;
         cursor: pointer;
-        display: flex;
-        justify-content: center;
-        height: 30px;
-        width: 120px;
+        height: 44px;
+        line-height: 16px;
+        width: 128.5px;
     }
     
     .light {
@@ -26,5 +24,11 @@
         background-color: rgb(52, 52, 52);
         color: white;
     }
-}
+    
+    .buttons-container p {
+        font-size: 16px;
+        font-weight: 700;
+        text-align: center;
+    }
 
+}

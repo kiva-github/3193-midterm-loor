@@ -4,7 +4,7 @@
 import './VotingResults.scss'
 
 // components
-import ResultsCard from "../results-card/ResultsCard"
+import ResultsCard from "./results-card/ResultsCard"
 
 // hooks
 import { useCollection } from '../../hooks/useCollection'
